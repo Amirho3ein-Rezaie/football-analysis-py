@@ -1,7 +1,5 @@
 from tools.func import select_item
-
-# variables
-GO_BACK_OPTION = 0
+from .variables import GO_BACK_OPTION
 
 
 def select_analysis(items: list) -> int:
