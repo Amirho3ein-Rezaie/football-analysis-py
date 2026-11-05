@@ -1,0 +1,18 @@
+from pandas import DataFrame
+
+
+class Data:
+    __data = DataFrame()
+    filename = None
+
+    def set_data(self, new_data: DataFrame):
+        self.__data = new_data
+
+    def set_filename(self, filename: str):
+        self.filename = filename
+
+    def get_data(self) -> DataFrame:
+        return self.__data
+
+
+data = Data()
