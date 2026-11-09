@@ -12,14 +12,25 @@ from data.load import read_data_file
 
 def main() -> None:
 
+    loaded_data_flag = False
+
     while True:
 
-        # clear the terminal
+        # clear the terminal and start
         run_command(r"cls")
+        print("=== Welcome to analysis football league data ===")
+        splitter()
 
         # load the data
-        dataset_file = get_filename() # get dataset filename
-        read_data_file(dataset_file, prepared_dataset(dataset_file)) # load data
+        if not loaded_data_flag:
+            dataset_file = get_filename()  # get dataset filename
+            read_data_file(dataset_file, prepared_dataset(dataset_file))  # load data
+
+            loaded_data_flag = True
+
+            print("Data successfully loaded ... !!!")
+            press_enter_to_continue()
+            continue
 
         # main
         analysis_number = select_analysis(ANALYSIS)
