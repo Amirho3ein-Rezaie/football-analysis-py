@@ -1,6 +1,13 @@
-from main.func import select_analysis, select_sub_analysis, perform
+from main.func import (
+    select_analysis,
+    select_sub_analysis,
+    perform,
+    get_filename,
+    prepared_dataset,
+)
 from main.variables import GO_BACK_OPTION, FUNC_LIST, ANALYSIS, SUB_ANALYSIS
 from tools.func import splitter, run_command, press_enter_to_continue
+from data.load import read_data_file
 
 
 def main() -> None:
@@ -9,6 +16,10 @@ def main() -> None:
 
         # clear the terminal
         run_command(r"cls")
+
+        # load the data
+        dataset_file = get_filename() # get dataset filename
+        read_data_file(dataset_file, prepared_dataset(dataset_file)) # load data
 
         # main
         analysis_number = select_analysis(ANALYSIS)
