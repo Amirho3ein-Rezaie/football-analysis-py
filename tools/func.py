@@ -83,7 +83,7 @@ def select_number_between(start: int, end: int, msg: str) -> int:
                 return number
 
         except ValueError:
-            print("\n" + "Invalid number ... ")
+            pass
 
 
 def select_item(items: list, start: int = 0, msg: str = "options") -> int:
