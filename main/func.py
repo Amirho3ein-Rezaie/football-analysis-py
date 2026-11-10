@@ -32,7 +32,7 @@ def get_filename() -> str:
     return input("Enter the file name : ")
 
 
-def prepared_dataset(filename: str) -> bool:
+def is_prepared_dataset(filename: str) -> bool:
     "gets the dataset filename and define it's prepared or not and returns the it's address."
 
     return exists(PREPARED_DATA_DIR + filename)
