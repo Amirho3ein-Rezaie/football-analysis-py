@@ -3,11 +3,12 @@ from main.func import (
     select_sub_analysis,
     perform,
     get_filename,
-    prepared_dataset,
+    is_prepared_dataset,
 )
 from main.variables import GO_BACK_OPTION, FUNC_LIST, ANALYSIS, SUB_ANALYSIS
 from tools.func import splitter, run_command, press_enter_to_continue
 from data.load import read_data_file
+from data.prepare import prepare_dataset
 
 
 def main() -> None:
@@ -24,11 +25,21 @@ def main() -> None:
         # load the data
         if not loaded_data_flag:
             dataset_file = get_filename()  # get dataset filename
-            read_data_file(dataset_file, prepared_dataset(dataset_file))  # load data
+            prepared_dataset_flag = is_prepared_dataset(dataset_file)  # is it prepared
 
-            loaded_data_flag = True
+            # load data
+            rload = read_data_file(dataset_file, prepared_dataset_flag)  # load data
 
-            print("Data successfully loaded ... !!!")
+            if rload == 0:
+                loaded_data_flag = True
+                print("Data successfully Loaded ... !!!")
+
+            # if it is prepared, not will prepare it
+            if not prepared_dataset_flag and rload == 0:
+
+                if prepare_dataset():
+                    print("Dataset successfully Prepared ... !!!")
+
             press_enter_to_continue()
             continue
 
