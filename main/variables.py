@@ -1,3 +1,6 @@
+from analysis import leagues
+from analysis.tools import select_league
+
 # varialbes
 GO_BACK_OPTION = 0
 
@@ -74,7 +77,7 @@ SUB_ANALYSIS = [
 FUNC_LIST = [  # test list in dev will be full of functions
     # 1. League Overview
     [
-        "Matches Played",
+        lambda: leagues.total_matches_played(select_league()),
         "Total Goals",
         "Average Goals per Match",
         "Home Wins",
