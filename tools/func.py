@@ -2,6 +2,7 @@ from enum import Enum
 from msvcrt import getwch
 from subprocess import run
 from pandas import DataFrame
+from numpy import ndarray
 
 
 def run_command(command: str) -> int:
@@ -165,3 +166,21 @@ def dataframe_as_table(dataframe: DataFrame, number_columns: list = []) -> None:
     # split footer
     splitter(length_line=(sum(length) + len(columns) * 3))
     print()
+
+
+def select_str_option(options: list | ndarray) -> str:
+    "gets the list of options and user can select one item in list by writing."
+
+    # show the options list
+    print(options)
+
+    # select one item by writing
+    item = ""
+
+    while True:
+        item = input("Enter the option : ").strip()
+
+        if item in options:
+            return item
+
+        print("\033[F\033[K", end="")  # delete wrong item
