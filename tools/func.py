@@ -110,13 +110,13 @@ def splitter(line: bool = True, length_line: int = 100) -> None:
         print("-" * length_line)
 
 
-def display_result(field: str, statistic: str, result: float) -> None:
+def display_result(field: str, stats: str, rst: float, frt_number: int = 1000) -> None:
     """Display a formatted statistical analysis result."""
 
     print("=== Analysis result ===")
     print(f"Field: {field}")
-    print(f"Statistic: {statistic}")
-    print(f"Result: {result * 1000000:,.0f} units")
+    print(f"Statistic: {stats}")
+    print(f"Result: {rst * frt_number:,.0f} units")
 
 
 def dataframe_as_table(dataframe: DataFrame, number_columns: list = []) -> None:
