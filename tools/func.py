@@ -110,7 +110,7 @@ def splitter(line: bool = True, length_line: int = 100) -> None:
         print("-" * length_line)
 
 
-def display_result(field: str, stats: str, rst: float, frt_number: int = 1000) -> None:
+def display_result(field: str, stats: str, rst: float, frt_number: int = 1) -> None:
     """Display a formatted statistical analysis result."""
 
     print("=== Analysis result ===")
