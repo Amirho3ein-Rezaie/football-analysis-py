@@ -78,7 +78,7 @@ FUNC_LIST = [  # test list in dev will be full of functions
     # 1. League Overview
     [
         lambda: leagues.total_matches_played(select_league()),
-        "Total Goals",
+        lambda: leagues.total_goals(),
         "Average Goals per Match",
         "Home Wins",
         "Away Wins",
