@@ -39,3 +39,23 @@ def total_goals(league: str, season: int, show: bool = True) -> dict:
         )
 
     return {"number_matches": matches, "sum_goals": total_goal}
+
+
+def avrg_total_per_league(league: str, season: int, show: bool = True) -> float:
+    "Calculate the average goals per leagues."
+
+    # get datas
+    data = total_goals(league, season, False)
+
+    avrg = data["sum_goals"] / data["number_matches"]
+
+    if show:
+        print()
+        display_result(  # make correc the display result
+            f"Total Goals: {data["sum_goals"]}",
+            f"Total goals in {data["number_matches"]} matches",
+            avrg,
+            f"Average goals per matches in ({league},{season})",
+        )
+
+    return avrg
