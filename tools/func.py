@@ -1,8 +1,16 @@
 from enum import Enum
 from msvcrt import getwch
+from multiprocessing import Value
 from subprocess import run
 from pandas import DataFrame
 from numpy import ndarray
+
+
+class SelectionType(Enum):
+    "One Enum class that can select data type"
+
+    STR = "str"
+    INT = "int"
 
 
 def run_command(command: str) -> int:
@@ -168,7 +176,9 @@ def dataframe_as_table(dataframe: DataFrame, number_columns: list = []) -> None:
     print()
 
 
-def select_str_option(options: list | ndarray) -> str:
+def select_type_option(
+    options: list | ndarray, type: SelectionType, msg: str
+) -> str | int:
     "gets the list of options and user can select one item in list by writing."
 
     # show the options list
@@ -178,9 +188,19 @@ def select_str_option(options: list | ndarray) -> str:
     item = ""
 
     while True:
-        item = input("Enter the option : ").strip()
+        if type == SelectionType.INT:
+            try:
+                item = int(input(msg).strip())
 
-        if item in options:
-            return item
+                if item in options:
+                    return item
+            except ValueError as e:
+                print("Enter number ... ")
+
+        if type == SelectionType.STR:
+            item = input(msg).strip()
+
+            if item in options:
+                return item
 
         print("\033[F\033[K", end="")  # delete wrong item
