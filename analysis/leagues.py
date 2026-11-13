@@ -18,18 +18,20 @@ def total_matches_played(league: str, show: bool = True) -> int:
     return result
 
 
-def total_goals(show: bool = True) -> dict:
+def total_goals(league: str, season: int, show: bool = True) -> dict:
     "Gets the all goals in the all matches in every league."
 
     dataframe = data.get_data()
 
     # calculate the stats
-    list_goals = dataframe["Total-Goals"].tolist()
+    mask = (dataframe["League"] == league) & (dataframe["Season"] == season)
+    list_goals = dataframe.loc[mask, "Total-Goals"].tolist()
+
     total_goal = sum(list_goals)
     matches = len(list_goals)
 
     # show result if it's needed
-    if show:
+    if show == True:
         display_result(
             field="Total-Goals",
             stats=f"All matches : {matches:,.0f}",
