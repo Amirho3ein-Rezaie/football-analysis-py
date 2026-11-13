@@ -13,7 +13,9 @@ def select_analysis(items: list) -> int:
 def select_sub_analysis(analysis: int, items: list) -> int:
     "select one sub analysis and return the number of it"
 
-    return select_item(items[analysis - 1], GO_BACK_OPTION, "Sub Analysis ... ")
+    return select_item(
+        ["Go back"] + items[analysis - 1], GO_BACK_OPTION, "Sub Analysis ... "
+    )
 
 
 def perform(analysis: int, sub_analysis: int, func_list: list) -> None:
