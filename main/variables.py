@@ -2,6 +2,9 @@ from analysis import leagues
 from analysis.tools import select_league, select_season
 
 # varialbes
+DEBUG = True
+TEST_DATASET_NAME = "leagues.csv"
+
 GO_BACK_OPTION = 0
 
 ANALYSIS = [
@@ -80,7 +83,7 @@ FUNC_LIST = [  # test list in dev will be full of functions
         lambda: leagues.total_matches_played(select_league()),
         lambda: leagues.total_goals(select_league(), select_season()),
         lambda: leagues.avrg_total_per_league(select_league(), select_season()),
-        "Home Wins",
+        lambda: leagues.home_win_number(select_league(), select_season()),
         "Away Wins",
         "Draws",
     ],

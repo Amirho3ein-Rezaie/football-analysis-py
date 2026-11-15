@@ -5,7 +5,14 @@ from main.func import (
     get_filename,
     is_prepared_dataset,
 )
-from main.variables import GO_BACK_OPTION, FUNC_LIST, ANALYSIS, SUB_ANALYSIS
+from main.variables import (
+    DEBUG,
+    GO_BACK_OPTION,
+    FUNC_LIST,
+    ANALYSIS,
+    SUB_ANALYSIS,
+    TEST_DATASET_NAME,
+)
 from tools.func import splitter, run_command, press_enter_to_continue
 from data.load import read_data_file
 from data.prepare import prepare_dataset
@@ -24,7 +31,14 @@ def main() -> None:
 
         # load the data
         if not loaded_data_flag:
-            dataset_file = get_filename()  # get dataset filename
+
+            # get dataset filename
+            dataset_file = ""
+            if DEBUG:  # if project in in debugging, does not need to input it.
+                dataset_file = TEST_DATASET_NAME
+            else:
+                dataset_file = get_filename()  # get dataset filename
+
             prepared_dataset_flag = is_prepared_dataset(dataset_file)  # is it prepared
 
             # load data
