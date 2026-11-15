@@ -62,7 +62,7 @@ def avrg_total_per_league(league: str, season: int, show: bool = True) -> float:
 
 
 def match_result_number(league: str, season: int, rst: str, show: bool = True) -> int:
-    "Calcalate the number of home win matches in a league and season."
+    "Calcalate the number of result matches in a league and season."
 
     dataframe = data.get_data()
 
