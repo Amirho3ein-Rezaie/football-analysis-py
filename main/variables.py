@@ -1,5 +1,5 @@
 from analysis import leagues
-from analysis.tools import select_league, select_season
+from analysis.tools import select_league, select_season, select_result_match
 
 # varialbes
 DEBUG = True
@@ -22,9 +22,7 @@ SUB_ANALYSIS = [
         "Matches Played",  # Total number of matches played in the league.
         "Total Goals",  # Total number of goals scored in all matches.
         "Average Goals per Match",  # Average number of goals scored per match.
-        "Home Wins (Number)",  # Number of matches won by home teams.
-        "Away Wins (Number)",  # Number of matches won by away teams.
-        "Draws (Number)",  # Number of matches that ended in a draw.
+        "Number Result Matches (Number)",  # Number of matches won by home teams.
     ],
     # 2. League Standings
     [
@@ -83,9 +81,9 @@ FUNC_LIST = [  # test list in dev will be full of functions
         lambda: leagues.total_matches_played(select_league()),
         lambda: leagues.total_goals(select_league(), select_season()),
         lambda: leagues.avrg_total_per_league(select_league(), select_season()),
-        lambda: leagues.home_win_number(select_league(), select_season()),
-        "Away Wins",
-        "Draws",
+        lambda: leagues.match_result_number(
+            select_league(), select_season(), select_result_match()
+        ),
     ],
     # 2. League Standings
     [

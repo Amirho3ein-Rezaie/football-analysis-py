@@ -59,3 +59,40 @@ def avrg_total_per_league(league: str, season: int, show: bool = True) -> float:
         )
 
     return avrg
+
+
+def match_result_number(league: str, season: int, rst: str, show: bool = True) -> int:
+    "Calcalate the number of home win matches in a league and season."
+
+    dataframe = data.get_data()
+
+    # make filter
+    condition = (
+        (dataframe["League"] == league)
+        & (dataframe["Season"] == season)
+        & (dataframe["Winner"] == rst)
+    )
+
+    # filter the data
+    total = dataframe.loc[condition].__len__()
+
+    # show the result
+    if show:
+
+        # make dynacin message
+        if rst == "H":
+            stats_msg = "Number of home win"
+        elif rst == "A":
+            stats_msg = "Number of away win"
+        else:
+            stats_msg = "Number of draw"
+
+        print()
+        display_result(
+            field="Winner",
+            stats=stats_msg,
+            rst=total,
+            rst_msg="The number of result matches",
+        )
+
+    return total
