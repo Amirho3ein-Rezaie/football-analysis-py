@@ -19,9 +19,9 @@ SUB_ANALYSIS = [
         "Matches Played",  # Total number of matches played in the league.
         "Total Goals",  # Total number of goals scored in all matches.
         "Average Goals per Match",  # Average number of goals scored per match.
-        "Home Wins",  # Number of matches won by home teams.
-        "Away Wins",  # Number of matches won by away teams.
-        "Draws",  # Number of matches that ended in a draw.
+        "Home Wins (Number)",  # Number of matches won by home teams.
+        "Away Wins (Number)",  # Number of matches won by away teams.
+        "Draws (Number)",  # Number of matches that ended in a draw.
     ],
     # 2. League Standings
     [
