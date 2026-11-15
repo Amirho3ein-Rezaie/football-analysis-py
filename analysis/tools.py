@@ -20,3 +20,11 @@ def select_season() -> int:
 
     # select one item by writing
     return select_type_option(seasons, SelectionType.INT, "Enter the Season : ")
+
+
+def select_result_match() -> str:
+    dataframe = data.get_data()
+    results = dataframe["Winner"].unique()
+
+    # select one item by writing
+    return select_type_option(results, SelectionType.STR, "Enter the Result match : ")
