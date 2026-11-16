@@ -1,4 +1,5 @@
 from analysis import leagues
+from analysis import standings
 from analysis.tools import select_league, select_season, select_result_match
 
 # varialbes
@@ -87,7 +88,7 @@ FUNC_LIST = [  # test list in dev will be full of functions
     ],
     # 2. League Standings
     [
-        "Team Rankings",
+        lambda: standings.team_ranking(select_league(), select_season()),
         "Points",
         "Wins",
         "Draws",
