@@ -28,13 +28,6 @@ SUB_ANALYSIS = [
     # 2. League Standings
     [
         "Team Rankings",  # Ranking of teams based on their points.
-        "Points",  # Total points earned by each team.
-        "Wins",  # Total number of matches won by each team.
-        "Draws",  # Total number of matches drawn by each team.
-        "Losses",  # Total number of matches lost by each team.
-        "Goals Scored",  # Total goals scored by each team.
-        "Goals Conceded",  # Total goals conceded by each team.
-        "Goal Difference",  # Difference between goals scored and conceded.
     ],
     # 3. Team Performance Analysis
     [
@@ -89,13 +82,6 @@ FUNC_LIST = [  # test list in dev will be full of functions
     # 2. League Standings
     [
         lambda: standings.team_ranking(select_league(), select_season()),
-        "Points",
-        "Wins",
-        "Draws",
-        "Losses",
-        "Goals Scored",
-        "Goals Conceded",
-        "Goal Difference",
     ],
     # 3. Team Performance Analysis
     [
