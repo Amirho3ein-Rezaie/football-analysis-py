@@ -30,14 +30,17 @@ def select_result_match() -> str:
     return select_type_option(results, SelectionType.STR, "Enter the Result match : ")
 
 
-def team_info(team: str, league: str, season: int) -> dict:
+def team_info(team: str, season: int, league: str = "") -> dict:
     "Calculate the number of wins of one team."
 
     dataframe = data.get_data()
 
     # condirions
     team_con = (dataframe["Home-Team"] == team) | (dataframe["Away-Team"] == team)
+
     condition = (dataframe["League"] == league) & (dataframe["Season"] == season)
+    if league == "":
+        condition = dataframe["Season"] == season
 
     # wins
     wins = (
