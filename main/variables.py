@@ -1,5 +1,6 @@
 from analysis import leagues
 from analysis import standings
+from analysis import teams
 from analysis.tools import select_league, select_season, select_result_match
 
 # varialbes
@@ -85,7 +86,7 @@ FUNC_LIST = [  # test list in dev will be full of functions
     ],
     # 3. Team Performance Analysis
     [
-        "Wins, Draws and Losses",
+        lambda: teams.team_win_draw_lose_compare(),
         "Average Points",
         "Average Goals Scored",
         "Average Goals Conceded",
