@@ -1,6 +1,7 @@
 from data.data import data
 from pandas import DataFrame
 from tools.func import dataframe_as_table
+from .tools import team_info
 
 
 def team_ranking(league: str, season: int, show: bool = True) -> DataFrame:
@@ -25,39 +26,20 @@ def team_ranking(league: str, season: int, show: bool = True) -> DataFrame:
 
     for team in teams:
 
-        # condirions
-        team_con = (dataframe["Home-Team"] == team) | (dataframe["Away-Team"] == team)
-
         # gets the stats of the table
         # # get the wins data
-        home_wins = dataframe.loc[
-            condition & (dataframe["Home-Team"] == team) & (dataframe["Winner"] == "H")
-        ].__len__()
-        away_wins = dataframe.loc[
-            condition & (dataframe["Away-Team"] == team) & (dataframe["Winner"] == "A")
-        ].__len__()
-        wins = home_wins + away_wins
+        wins = team_info(team, league, season)["wins"]
 
         # # get the positive goals
-        positive_goal = sum(
-            dataframe.loc[condition & (dataframe["Home-Team"] == team), "Home-Goals"]
-        ) + sum(
-            dataframe.loc[condition & (dataframe["Away-Team"] == team), "Away-Goals"]
-        )
-        # # get the negative goals
-        negative_goal = sum(
-            dataframe.loc[condition & (dataframe["Home-Team"] == team), "Away-Goals"]
-        ) + sum(
-            dataframe.loc[condition & (dataframe["Away-Team"] == team), "Home-Goals"]
-        )
+        positive_goal = team_info(team, league, season)["s-goals"]
+        negative_goal = team_info(team, league, season)["c-goals"]
 
         # # get the draws and loses data
-        draws = dataframe.loc[
-            condition & team_con & (dataframe["Winner"] == "D")
-        ].__len__()
+        draws = team_info(team, league, season)["draws"]
 
-        matches = dataframe.loc[condition & team_con].__len__()
-        loses = matches - (wins + draws)
+        matches = team_info(team, league, season)["matches"]
+        loses = team_info(team, league, season)["loses"]
+
         point = wins * 3 + draws
 
         # add stats to the dictionary
