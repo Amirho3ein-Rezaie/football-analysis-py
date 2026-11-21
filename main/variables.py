@@ -86,7 +86,7 @@ FUNC_LIST = [  # test list in dev will be full of functions
     ],
     # 3. Team Performance Analysis
     [
-        lambda: teams.team_win_draw_lose_compare(),
+        lambda: teams.team_win_draw_lose_compare(select_season()),
         "Average Points",
         "Average Goals Scored",
         "Average Goals Conceded",
