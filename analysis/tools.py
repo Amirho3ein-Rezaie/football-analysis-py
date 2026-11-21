@@ -1,5 +1,5 @@
 from data.data import data
-from tools.func import select_type_option, SelectionType
+from tools.func import select_type_option, SelectionType, splitter
 
 
 def select_league() -> str:
@@ -78,3 +78,16 @@ def team_info(team: str, season: int, league: str = "") -> dict:
         "s-goals": p_goal,
         "c-goals": n_goal,
     }
+
+
+def select_team(league: str) -> str:
+    "At first select one league and select one team from that at least return team name."
+
+    dataframe = data.get_data()
+
+    teams = dataframe.loc[dataframe["League"] == league, "Home-Team"].unique()
+
+    splitter(length_line=30)  # split teams name with the leagues name
+
+    teams.sort()  # sort the teams name
+    return select_type_option(teams, SelectionType.STR, "Enter the Team name : ")
