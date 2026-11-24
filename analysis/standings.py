@@ -31,8 +31,8 @@ def team_ranking(league: str, season: int, show: bool = True) -> DataFrame:
         wins = team_info(team, league=league, season=season)["wins"]
 
         # # get the positive goals
-        positive_goal = team_info(team, league=league, season=season)["s-goals"]
-        negative_goal = team_info(team, league, season)["c-goals"]
+        positive_goal = team_info(team, season, league)["s-goals"]
+        negative_goal = team_info(team, season, league)["c-goals"]
 
         # # get the draws and loses data
         draws = team_info(team, league=league, season=season)["draws"]
