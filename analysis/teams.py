@@ -1,7 +1,8 @@
 from data.data import data
 from .tools import team_info, select_team, select_league
-from tools.func import dataframe_as_table, ask_yes_no
+from tools.func import dataframe_as_table, ask_yes_no, display_result
 from pandas import DataFrame
+from .standings import team_ranking
 
 
 def team_win_draw_lose_compare(season: int) -> DataFrame:
@@ -35,3 +36,24 @@ def team_win_draw_lose_compare(season: int) -> DataFrame:
     dataframe_as_table(dataframe_result)
 
     return dataframe_result
+
+
+def average_points(league: str, season: int, show: bool = True) -> float:
+    "Get the points and number of matches that played by the team and cal the average of points."
+
+    # datas
+    team = select_team(league=league)
+    league_data = team_ranking(league=league, season=season, show=False)
+
+    # calculating the result
+    matches = league_data.loc[league_data["Team"] == team, "Matches"].iloc[0]
+    points = league_data.loc[league_data["Team"] == team, "Points"].iloc[0]
+
+    average = points / matches
+
+    # show the result in position that needs
+    if show:
+        print()
+        display_result("points / matches", "average points", average)
+
+    return average
