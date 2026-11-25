@@ -1,5 +1,5 @@
 from data.data import data
-from .tools import team_info, select_team, select_league
+from .tools import team_info, select_team, select_league, select_teams
 from tools.func import dataframe_as_table, ask_yes_no, display_result
 from pandas import DataFrame
 from .standings import team_ranking
@@ -8,20 +8,8 @@ from .standings import team_ranking
 def team_win_draw_lose_compare(season: int) -> DataFrame:
     "Get name teams, season year for comparing the number of wins, draws and loses."
 
-    # variables
-    teams = []
-
-    # select the teams that we want to compare them with each other
-    while True:
-
-        print(f"Selecting the team ({teams.__len__() + 1})")
-
-        teams.append(select_team(select_league()))
-
-        print()
-        if not ask_yes_no("Wants to enter team's name ? "):
-            break
-        print()
+    # select teams that we want to compare them
+    teams = select_teams()
 
     # data the data of teams
     result = {"Team": [], "Wins": [], "Draws": [], "Loses": []}
