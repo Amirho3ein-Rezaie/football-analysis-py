@@ -1,5 +1,5 @@
 from data.data import data
-from tools.func import select_type_option, SelectionType, splitter
+from tools.func import select_type_option, SelectionType, splitter, ask_yes_no
 
 
 def select_league() -> str:
@@ -91,3 +91,26 @@ def select_team(league: str) -> str:
 
     teams.sort()  # sort the teams name
     return select_type_option(teams, SelectionType.STR, "Enter the Team name : ")
+
+
+def select_teams() -> list:
+    """Select one or more different teams (each team from its own league)."""
+
+    teams = []
+
+    while True:
+        print(f"Selecting the team ({len(teams) + 1})")
+        team = select_team(select_league())
+
+        if team in teams:
+            print(f"{team} is already selected.")
+            continue
+
+        teams.append(team)
+
+        print()
+        if not ask_yes_no("Do you want to select another team ?"):
+            break
+        print()
+
+    return teams
