@@ -1,6 +1,6 @@
 from data.data import data
-from .tools import team_info, select_team, select_league, select_teams
-from tools.func import dataframe_as_table, ask_yes_no, display_result
+from .tools import team_info, select_teams
+from tools.func import dataframe_as_table
 from pandas import DataFrame
 from .standings import team_ranking
 
