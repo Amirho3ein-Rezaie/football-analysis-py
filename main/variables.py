@@ -33,9 +33,7 @@ SUB_ANALYSIS = [
     # 3. Team Performance Analysis
     [
         "Wins, Draws and Losses",  # Comparison of wins, draws and losses for each team.
-        "Average Points",  # Average points earned per match by each team.
-        "Average Goals Scored",  # Average goals scored per match by each team.
-        "Average Goals Conceded",  # Average goals conceded per match by each team.
+        "Average Points, Goals Scored and Conceded",  # Average points, Average goals, Average goals earned per match by each team.
         "Team Performance Comparison",  # Comparison of overall performance between teams.
     ],
     # 4. Home & Away Performance
@@ -87,9 +85,7 @@ FUNC_LIST = [  # test list in dev will be full of functions
     # 3. Team Performance Analysis
     [
         lambda: teams.team_win_draw_lose_compare(select_season()),
-        lambda: teams.average_points(select_league(), select_season()),
-        "Average Goals Scored",
-        "Average Goals Conceded",
+        lambda: teams.average_stats(select_season()),
         "Team Performance Comparison",
     ],
     # 4. Home & Away Performance
