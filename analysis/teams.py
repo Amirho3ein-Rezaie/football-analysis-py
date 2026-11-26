@@ -1,3 +1,5 @@
+from numpy import append
+
 from data.data import data
 from .tools import team_info, select_teams
 from tools.func import dataframe_as_table
@@ -66,5 +68,48 @@ def average_stats(season: int, show: bool = True) -> DataFrame:
     # show the table result if it is needed
     if show:
         dataframe_as_table(result)
+
+    return result
+
+
+def performance_compare(season: int, show: bool = True) -> DataFrame:
+    "Comparison performance of teams (wins, draws, loses, win rate, claen sheet, )."
+
+    # variables
+    dataframe = data.get_data()
+    teams = select_teams()
+
+    # get datas
+    temp_result = []
+    for team in teams:
+
+        league = dataframe.loc[dataframe["Home-Team"] == team, "League"].iloc[0]
+        info = team_info(team, season)
+
+        clean_sheet_condition = (
+            (dataframe["League"] == league)
+            & (dataframe["Season"] == season)
+            & (
+                ((dataframe["Home-Team"] == team) & (dataframe["Away-Goals"] == 0))
+                | ((dataframe["Away-Team"] == team) & (dataframe["Home-Goals"] == 0))
+            )
+        )
+
+        temp_result.append(
+            {
+                "team": team,
+                "league": league,
+                "season": season,
+                "wins": info["wins"],
+                "draws": info["draws"],
+                "losses": info["loses"],
+                "win_rate": round(info["wins"] / info["matches"] * 100, 2),
+                "matches": info["matches"],
+                "clean_sheets": int(clean_sheet_condition.sum()),
+            }
+        )
+    result = DataFrame(temp_result)
+
+    dataframe_as_table(result)
 
     return result
