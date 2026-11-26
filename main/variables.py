@@ -33,8 +33,8 @@ SUB_ANALYSIS = [
     # 3. Team Performance Analysis
     [
         "Wins, Draws and Losses",  # Comparison of wins, draws and losses for each team.
-        "Average Points, Goals Scored and Conceded",  # Average points, Average goals, Average goals earned per match by each team.
-        "Team Performance Comparison",  # Comparison of overall performance between teams.
+        "Teams Performance Overview",  # Average points, Average goals, Average goals earned per match by each team.
+        "Teams Performance Comparison",  # Comparison of overall performance between teams.
     ],
     # 4. Home & Away Performance
     [
